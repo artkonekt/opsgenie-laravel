@@ -10,6 +10,11 @@ jobs:
       matrix:
         php: ['7.4', '8.0']
         laravel: ['8.0', '8.51']
+        exclude:
+          - php: '8.0'
+            laravel: '8.0'
+        name: PHP ${{ matrix.php }} Laravel ${{ matrix.laravel }}
+
     name: PHP ${{ matrix.php }} Laravel ${{ matrix.laravel }}
     steps:
       - name: Checkout
