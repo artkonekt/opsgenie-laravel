@@ -25,9 +25,49 @@ Add your Auth Token, and endpoint config to your application's `config/services.
 'opsgenie' => [
     'auth_token' => env('OPSGENIE_AUTH_TOKEN'),
     'europe' => true, // OPTIONAL: if true, then the EU API endpoint will be used
-    // 'endpoint' => 'https://some.custom.endpoint/v2', // VERY OPTIONAL: in case you use a non-official endpoint
+    // 'endpoint' => 'https://some.custom.endpoint/', // VERY OPTIONAL: in case you use a non-official endpoint
 ],
 ...
 ```
 
 ## Usage
+
+### Laravel Notifications
+
+You can use the OpsGenie channel in your `via()` method inside a
+Notification class. The following example creates an alert with the
+given message at OpsGenie:
+
+```php
+use Illuminate\Notifications\Notification;
+use Konekt\OpsGenie\Commands\CreateAlert;
+use Konekt\OpsGenie\Contracts\OpsGenieCommand;
+use Konekt\OpsGenie\Contracts\OpsGenieNotification;
+use Konekt\OpsGenie\Notification\OpsGenieChannel;
+
+class SiteProblem extends Notification implements OpsGenieNotification
+{
+    private string $message;
+
+    public function __construct(string $message)
+    {
+        $this->message = $message;
+    }
+
+    public function via($notifiable)
+    {
+        return [OpsGenieChannel::class];
+    }
+
+    public function toOpsGenie($notifiable): OpsGenieCommand
+    {
+        return new CreateAlert($this->message);
+    }
+}
+```
+
+To trigger the sending of the notification, use:
+
+```php
+Notification::send(['*'], new SiteProblem('Hey, there is a problem here'));
+```

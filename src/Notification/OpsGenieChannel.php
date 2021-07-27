@@ -14,8 +14,8 @@ declare(strict_types=1);
 
 namespace Konekt\OpsGenie\Notification;
 
-use Illuminate\Notifications\Notification;
 use Konekt\OpsGenie\Client\OpsGenieClient;
+use Konekt\OpsGenie\Contracts\OpsGenieNotification;
 
 final class OpsGenieChannel
 {
@@ -26,10 +26,9 @@ final class OpsGenieChannel
         $this->genieClient = $genieClient;
     }
 
-    public function send($notifiable, Notification $notification)
+    public function send($notifiable, OpsGenieNotification $notification)
     {
-        $payload = $notification->toOpsGenie($notifiable);
-
-        $this->genieClient->post('/alerts', $payload);
+        $command = $notification->toOpsGenie($notifiable);
+        $this->genieClient->execute($command);
     }
 }

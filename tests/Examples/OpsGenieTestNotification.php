@@ -15,9 +15,12 @@ declare(strict_types=1);
 namespace Konekt\OpsGenie\Tests\Examples;
 
 use Illuminate\Notifications\Notification;
+use Konekt\OpsGenie\Commands\CreateAlert;
+use Konekt\OpsGenie\Contracts\OpsGenieCommand;
+use Konekt\OpsGenie\Contracts\OpsGenieNotification;
 use Konekt\OpsGenie\Notification\OpsGenieChannel;
 
-class OpsGenieTestNotification extends Notification
+class OpsGenieTestNotification extends Notification implements OpsGenieNotification
 {
     private string $message;
 
@@ -31,8 +34,8 @@ class OpsGenieTestNotification extends Notification
         return [OpsGenieChannel::class];
     }
 
-    public function toOpsGenie($notifiable)
+    public function toOpsGenie($notifiable): OpsGenieCommand
     {
-        return ['message' => $this->message];
+        return new CreateAlert($this->message);
     }
 }

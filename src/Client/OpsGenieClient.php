@@ -17,6 +17,9 @@ namespace Konekt\OpsGenie\Client;
 use Illuminate\Http\Client\Response;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Str;
+use Konekt\OpsGenie\Contracts\OpsGenieCommand;
+use Konekt\OpsGenie\Exceptions\InvalidHttpMethodException;
+use Konekt\OpsGenie\Support\HttpMethod;
 
 final class OpsGenieClient
 {
@@ -30,10 +33,42 @@ final class OpsGenieClient
         $this->endpoint = $this->sanitizeEndpoint($endpoint);
     }
 
+    public function execute(OpsGenieCommand $command): Response
+    {
+        $this->validate($command);
+        $method = $command->method();
+
+        return $this->{$method}($command->path(), $command->payload());
+    }
+
     public function post(string $path, array $payload): Response
     {
         return Http::withHeaders($this->headers())
             ->post($this->uri($path), $payload);
+    }
+
+    public function get(string $path, array $payload): Response
+    {
+        return Http::withHeaders($this->headers())
+            ->get($this->uri($path), $payload);
+    }
+
+    public function delete(string $path, array $payload): Response
+    {
+        return Http::withHeaders($this->headers())
+            ->delete($this->uri($path), $payload);
+    }
+
+    public function put(string $path, array $payload): Response
+    {
+        return Http::withHeaders($this->headers())
+            ->put($this->uri($path), $payload);
+    }
+
+    public function patch(string $path, array $payload): Response
+    {
+        return Http::withHeaders($this->headers())
+            ->patch($this->uri($path), $payload);
     }
 
     private function headers(): array
@@ -58,5 +93,12 @@ final class OpsGenieClient
         $result = Str::endsWith($endpoint, '/') ? Str::replaceLast('/', '', $endpoint) : $endpoint;
 
         return !Str::endsWith($result, '/v2') ? $result . '/v2' : $result;
+    }
+
+    private function validate(OpsGenieCommand $command): void
+    {
+        if (!HttpMethod::isValid($command->method())) {
+            throw new InvalidHttpMethodException($command);
+        }
     }
 }
