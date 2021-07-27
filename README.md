@@ -30,6 +30,22 @@ Add your Auth Token, and endpoint config to your application's `config/services.
 ...
 ```
 
+#### A Note on The OpsGenie API Key
+
+To create an alert, you need an API key from an
+<span style="color:green">**API Integration ✔**</span> and
+<span style="color:red">**NOT a "normal" API key ❌**</span>.
+
+Normal API keys can be found at Settings -> API key management:
+
+![normal_api_key.png](doc/normal_api_key.png)
+
+Integration API keys can be fount ad Teams -> {TEAM} -> Integrations:
+
+![integration_api_key.png](doc/integration_api_key.png)
+
+> See more details at [this Atlassian Forum Thread](https://community.atlassian.com/t5/Opsgenie-questions/API-authentication-for-create-alerts/qaq-p/1477556#M773)
+
 ## Usage
 
 ### Laravel Notifications
