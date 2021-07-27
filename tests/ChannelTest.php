@@ -30,7 +30,7 @@ class ChannelTest extends TestCase
             'took' => 0.302,
             'requestId' => Str::uuid()->toString()
         ];
-        
+
         Http::fake([
             'opsgenie.com/*' => Http::response($responseBody, 202)
         ]);

@@ -24,7 +24,6 @@ class OpsGenieServiceProvider extends ServiceProvider
         parent::register();
 
         $this->app->singleton(OpsGenieClient::class, function ($app) {
-
             $config = $app['config']['services.opsgenie'] ?? [];
 
             return new OpsGenieClient(
