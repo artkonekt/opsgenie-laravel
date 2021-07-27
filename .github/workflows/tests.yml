@@ -13,8 +13,6 @@ jobs:
         exclude:
           - php: '8.0'
             laravel: '8.0'
-        name: PHP ${{ matrix.php }} Laravel ${{ matrix.laravel }}
-
     name: PHP ${{ matrix.php }} Laravel ${{ matrix.laravel }}
     steps:
       - name: Checkout
