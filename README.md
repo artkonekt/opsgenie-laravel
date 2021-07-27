@@ -8,4 +8,26 @@
 
 This package enables Laravel 8+ Applications to send notification to OpsGenie.
 
+## Installation
+
+```bash
+composer require konekt/opsgenie-laravel
+```
+
+### Configuration
+
+Add your Auth Token, and endpoint config to your application's `config/services.php`:
+
+```php
+// config/services.php
+...
+
+'opsgenie' => [
+    'auth_token' => env('OPSGENIE_AUTH_TOKEN'),
+    'europe' => true, // OPTIONAL: if true, then the EU API endpoint will be used
+    // 'endpoint' => 'https://some.custom.endpoint/v2', // VERY OPTIONAL: in case you use a non-official endpoint
+],
+...
+```
+
 ## Usage
