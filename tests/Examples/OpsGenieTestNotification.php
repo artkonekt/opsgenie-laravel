@@ -36,6 +36,6 @@ class OpsGenieTestNotification extends Notification implements OpsGenieNotificat
 
     public function toOpsGenie($notifiable): OpsGenieCommand
     {
-        return new CreateAlert($this->message);
+        return CreateAlert::withMessage($this->message);
     }
 }

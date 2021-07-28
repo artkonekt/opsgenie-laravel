@@ -43,7 +43,7 @@ class CreateAlertTest extends TestCase
     /** @test */
     public function it_can_be_executed()
     {
-        $this->genie->execute(new CreateAlert('Alert message'));
+        $this->genie->execute(CreateAlert::withMessage('Alert message'));
 
         Http::assertSent(function (Request $request) {
             return

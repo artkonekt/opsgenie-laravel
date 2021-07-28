@@ -15,20 +15,26 @@ declare(strict_types=1);
 namespace Konekt\OpsGenie\Commands;
 
 use Konekt\OpsGenie\Contracts\OpsGenieCommand;
+use Konekt\OpsGenie\Models\Alert;
 
 final class CreateAlert extends BasePostCommand implements OpsGenieCommand
 {
     protected string $path = '/alerts';
 
-    private string $message;
+    private Alert $alert;
 
-    public function __construct(string $message)
+    public function __construct(Alert $alert)
     {
-        $this->message = $message;
+        $this->alert = $alert;
+    }
+
+    public static function withMessage(string $message)
+    {
+        return new self(new Alert($message));
     }
 
     public function payload(): array
     {
-        return ['message' => $this->message];
+        return $this->alert->toArray();
     }
 }

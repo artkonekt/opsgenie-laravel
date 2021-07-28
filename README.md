@@ -48,6 +48,39 @@ Integration API keys can be fount ad Teams -> {TEAM} -> Integrations:
 
 ## Usage
 
+At the moment of writing there are only 2 OpsGenie commands implemented:
+
+- [Create an Alert](https://docs.opsgenie.com/docs/alert-api#create-alert)
+- [Ping a Heartbeat](https://docs.opsgenie.com/docs/heartbeat-api#ping-heartbeat-request)
+
+### Standalone Mode
+
+To send a command to OpsGenie without using the Laravel Notifications
+subsystem, you need to obtain the client, create a command and execute
+it.
+
+#### Creating an Alert
+
+```php
+
+use Konekt\OpsGenie\Client\OpsGenieClient;
+use Konekt\OpsGenie\Commands\CreateAlert;
+
+$genie = app(OpsGenieClient::class);
+$genie->execute(CreateAlert::withMessage('I am an alert message'));
+```
+
+#### Pinging a Heartbeat
+
+```php
+
+use Konekt\OpsGenie\Client\OpsGenieClient;
+use Konekt\OpsGenie\Commands\PingHeartbeat;
+
+$genie = app(OpsGenieClient::class);
+$genie->execute(new PingHeartbeat('name of the heartbeat'));
+```
+
 ### Laravel Notifications
 
 You can use the OpsGenie channel in your `via()` method inside a
@@ -77,7 +110,7 @@ class SiteProblem extends Notification implements OpsGenieNotification
 
     public function toOpsGenie($notifiable): OpsGenieCommand
     {
-        return new CreateAlert($this->message);
+        return CreateAlert::withMessage($this->message);
     }
 }
 ```
@@ -86,4 +119,41 @@ To trigger the sending of the notification, use:
 
 ```php
 Notification::send(['*'], new SiteProblem('Hey, there is a problem here'));
+```
+
+Apart from triggering an alert, the Laravel Notification you create can
+send any OpsGenie command, eg. pinging a hearbeat:
+
+```php
+use Illuminate\Notifications\Notification;
+use Konekt\OpsGenie\Commands\PingHeartbeat;
+use Konekt\OpsGenie\Contracts\OpsGenieCommand;
+use Konekt\OpsGenie\Contracts\OpsGenieNotification;
+use Konekt\OpsGenie\Notification\OpsGenieChannel;
+
+class ERPSyncCompleted extends Notification implements OpsGenieNotification
+{
+    private string $heartbeat;
+
+    public function __construct(string $heartbeat)
+    {
+        $this->heartbeat = $heartbeat;
+    }
+
+    public function via($notifiable)
+    {
+        return [OpsGenieChannel::class];
+    }
+
+    public function toOpsGenie($notifiable): OpsGenieCommand
+    {
+        return new PingHeartbeat($this->heartbeat);
+    }
+}
+```
+
+To send this notification use:
+
+```php
+Notification::send(['*'], new ERPSyncCompleted('erp-sync-heartbeat'));
 ```
