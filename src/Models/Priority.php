@@ -39,6 +39,11 @@ final class Priority
         }
     }
 
+    public function __toString(): string
+    {
+        return $this->value();
+    }
+
     public function value(): string
     {
         return $this->value;
@@ -67,11 +72,6 @@ final class Priority
     public static function P5(): Priority
     {
         return new self(self::P5);
-    }
-
-    public function __toString(): string
-    {
-        return $this->value();
     }
 
     private function isValid(string $value): bool
