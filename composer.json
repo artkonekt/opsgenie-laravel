@@ -31,5 +31,12 @@
         "psr-4": {
             "Konekt\\OpsGenie\\Tests\\": "tests/"
         }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Konekt\\OpsGenie\\OpsGenieServiceProvider"
+            ]
+        }
     }
 }
