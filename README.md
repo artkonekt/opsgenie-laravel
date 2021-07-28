@@ -157,3 +157,36 @@ To send this notification use:
 ```php
 Notification::send(['*'], new ERPSyncCompleted('erp-sync-heartbeat'));
 ```
+
+#### Customizing Alerts
+
+It is possible to set further attributes of the created alerts like
+[setting priority](https://support.atlassian.com/opsgenie/docs/what-is-the-priority-level-of-integration/)
+or adding description, etc.
+
+This can be done when instantiating the `CreateAlert` command for
+example in the `toOpsGenie` method:
+
+```php
+class CriticalConditionDetected extends Notification implements OpsGenieNotification
+{
+    private string $message;
+
+    public function __construct(string $message)
+    {
+        $this->message = $message;
+    }
+
+    public function via($notifiable)
+    {
+        return [OpsGenieChannel::class];
+    }
+
+    public function toOpsGenie($notifiable): OpsGenieCommand
+    {
+        $alert = new Alert('Shit hit the fan', ['priority' => 'P1']);
+        
+        return new CreateAlert($alert);
+    }
+}
+```
