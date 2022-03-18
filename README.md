@@ -6,7 +6,7 @@
 [![StyleCI](https://styleci.io/repos/389939873/shield?branch=master)](https://styleci.io/repos/389939873)
 [![MIT Software License](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](LICENSE.md)
 
-This package enables Laravel 8+ Applications to send notification to OpsGenie.
+This package enables Laravel 8 and 9 Applications to send notification to OpsGenie.
 
 ## Installation
 

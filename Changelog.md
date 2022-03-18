@@ -1,5 +1,12 @@
 # OpsGenie Notifications for Laravel
 
+## Unreleased
+##### 2022-03-XX
+
+- Added PHP 8.1 Support
+- Added Laravel 9 Support
+- Changed the minimum Laravel requirement to 8.22.1, see [CVE-2021-21263](https://blog.laravel.com/security-laravel-62011-7302-8221-released)
+
 ## 1.0.2
 ##### 2021-07-22
 
