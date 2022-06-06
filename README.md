@@ -36,11 +36,11 @@ To create an alert, you need an API key from an
 <span style="color:green">**API Integration ✔**</span> and
 <span style="color:red">**NOT a "normal" API key ❌**</span>.
 
-Normal API keys can be found at Settings -> API key management:
+❌ Normal API keys can be found at Settings -> API key management:
 
 ![normal_api_key.png](doc/normal_api_key.png)
 
-Integration API keys can be fount ad Teams -> {TEAM} -> Integrations:
+✔ Integration API keys can be fount ad Teams -> {TEAM} -> Integrations:
 
 ![integration_api_key.png](doc/integration_api_key.png)
 
