@@ -6,7 +6,7 @@
 [![StyleCI](https://styleci.io/repos/389939873/shield?branch=master)](https://styleci.io/repos/389939873)
 [![MIT Software License](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](LICENSE.md)
 
-This package enables Laravel 8 and 9 Applications to send notification to OpsGenie.
+This package enables Laravel 9 and 10 Applications to send notification to OpsGenie.
 
 ## Installation
 
@@ -40,7 +40,7 @@ To create an alert, you need an API key from an
 
 ![normal_api_key.png](doc/normal_api_key.png)
 
-✔ Integration API keys can be fount ad Teams -> {TEAM} -> Integrations:
+✔ Integration API keys can be found ad Teams -> {TEAM} -> Integrations:
 
 ![integration_api_key.png](doc/integration_api_key.png)
 
