@@ -50,7 +50,7 @@ class CreateAlertTest extends TestCase
                 'post' === mb_strtolower($request->method()) &&
                 'https://api.opsgenie.com/v2/alerts' === $request->url() &&
                 'Alert message' === $request['message']
-                ;
+            ;
         });
     }
 }

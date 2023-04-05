@@ -43,7 +43,7 @@ class OpsGenieClientTest extends TestCase
                 'Test alert' === $request['message'] &&
                 $request->hasHeader('Authorization') &&
                 'GenieKey someAuthKey' === $request->header('Authorization')[0]
-                ;
+            ;
         });
     }
 

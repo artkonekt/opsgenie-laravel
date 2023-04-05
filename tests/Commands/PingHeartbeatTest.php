@@ -49,7 +49,7 @@ class PingHeartbeatTest extends TestCase
             return
                 'post' === mb_strtolower($request->method()) &&
                 'https://api.opsgenie.com/v2/heartbeats/heartbeat-name/ping' === $request->url()
-                ;
+            ;
         });
     }
 }
