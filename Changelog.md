@@ -1,5 +1,11 @@
 # OpsGenie Notifications for Laravel
 
+## Unreleased
+##### 2024-XX-YY
+
+- Added Laravel 11 support
+- Added PHP 8.3 support
+
 ## 1.2.0
 ##### 2023-04-05
 

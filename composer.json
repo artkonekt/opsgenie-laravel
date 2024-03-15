@@ -15,14 +15,14 @@
     ],
     "require": {
         "php": "^8.0",
-        "illuminate/notifications": "^9.2|^10.0",
-        "illuminate/support": "^9.2|^10.0",
-        "illuminate/http": "^9.2|^10.0",
+        "illuminate/notifications": "^9.2|^10.0|^11.0",
+        "illuminate/support": "^9.2|^10.0|^11.0",
+        "illuminate/http": "^9.2|^10.0|^11.0",
         "guzzlehttp/guzzle": "^6.5.5|^7.0.1"
     },
     "require-dev": {
-        "phpunit/phpunit": "^9.0",
-        "orchestra/testbench": "^7.0|^8.0"
+        "phpunit/phpunit": "^9.0|^10.0",
+        "orchestra/testbench": "^7.0|^8.0|^9.0"
     },
     "autoload": {
         "psr-4": { "Konekt\\OpsGenie\\": "src/" }
