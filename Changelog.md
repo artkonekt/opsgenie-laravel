@@ -4,6 +4,7 @@
 ##### 2025-XX-YY
 
 - Added Laravel 12 support
+- Added PHP 8.4 support
 
 ## 1.3.0
 ##### 2024-03-15
