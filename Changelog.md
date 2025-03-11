@@ -1,5 +1,10 @@
 # OpsGenie Notifications for Laravel
 
+## Unreleased
+##### 2025-XX-YY
+
+- Added Laravel 12 support
+
 ## 1.3.0
 ##### 2024-03-15
 
