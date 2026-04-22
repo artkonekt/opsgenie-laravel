@@ -20,6 +20,7 @@ use Illuminate\Support\Str;
 use Konekt\OpsGenie\Client\OpsGenieClient;
 use Konekt\OpsGenie\Commands\PingHeartbeat;
 use Konekt\OpsGenie\Tests\TestCase;
+use PHPUnit\Framework\Attributes\Test;
 
 class PingHeartbeatTest extends TestCase
 {
@@ -40,7 +41,7 @@ class PingHeartbeatTest extends TestCase
         ]);
     }
 
-    /** @test */
+    #[Test]
     public function it_can_be_executed()
     {
         $this->genie->execute(new PingHeartbeat('heartbeat-name'));

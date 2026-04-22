@@ -18,10 +18,11 @@ use Illuminate\Http\Client\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Str;
 use Konekt\OpsGenie\Client\OpsGenieClient;
+use PHPUnit\Framework\Attributes\Test;
 
 class OpsGenieClientTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function it_sends_a_proper_create_alert_request()
     {
         $responseBody = [
@@ -47,7 +48,7 @@ class OpsGenieClientTest extends TestCase
         });
     }
 
-    /** @test */
+    #[Test]
     public function the_endpoint_can_be_changed()
     {
         $responseBody = [

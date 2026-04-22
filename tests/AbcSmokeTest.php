@@ -14,6 +14,8 @@ declare(strict_types=1);
 
 namespace Konekt\OpsGenie\Tests;
 
+use PHPUnit\Framework\Attributes\Depends;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase as PHPUnitTestCase;
 
 class AbcSmokeTest extends PHPUnitTestCase
@@ -22,9 +24,8 @@ class AbcSmokeTest extends PHPUnitTestCase
 
     /**
      * Very Basic smoke test case for testing against parse errors, etc
-     *
-     * @test
      */
+    #[Test]
     public function smoke()
     {
         $this->assertTrue(true);
@@ -32,10 +33,9 @@ class AbcSmokeTest extends PHPUnitTestCase
 
     /**
      * Test for minimum PHP version
-     *
-     * @depends smoke
-     * @test
      */
+    #[Test]
+    #[Depends('smoke')]
     public function php_version_satisfies_requirements()
     {
         $this->assertFalse(

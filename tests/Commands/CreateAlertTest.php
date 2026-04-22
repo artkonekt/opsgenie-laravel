@@ -20,6 +20,7 @@ use Illuminate\Support\Str;
 use Konekt\OpsGenie\Client\OpsGenieClient;
 use Konekt\OpsGenie\Commands\CreateAlert;
 use Konekt\OpsGenie\Tests\TestCase;
+use PHPUnit\Framework\Attributes\Test;
 
 class CreateAlertTest extends TestCase
 {
@@ -40,7 +41,7 @@ class CreateAlertTest extends TestCase
         ]);
     }
 
-    /** @test */
+    #[Test]
     public function it_can_be_executed()
     {
         $this->genie->execute(CreateAlert::withMessage('Alert message'));

@@ -15,11 +15,12 @@ declare(strict_types=1);
 namespace Konekt\OpsGenie\Models\Tests;
 
 use Konekt\OpsGenie\Models\Priority;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase as PHPUnitTestCase;
 
 class PriorityTest extends PHPUnitTestCase
 {
-    /** @test */
+    #[Test]
     public function it_accepts_any_valid_value()
     {
         $p1 = new Priority('P1');
@@ -44,21 +45,21 @@ class PriorityTest extends PHPUnitTestCase
         $this->assertEquals('P5', $p5->value());
     }
 
-    /** @test */
+    #[Test]
     public function it_uses_a_default_if_no_value_was_specified()
     {
         $priority = new Priority();
         $this->assertEquals(Priority::__DEFAULT, $priority->value());
     }
 
-    /** @test */
+    #[Test]
     public function it_throws_an_exception_on_an_invalid_value()
     {
         $this->expectException(\LogicException::class);
         new Priority('asd');
     }
 
-    /** @test */
+    #[Test]
     public function magic_constructors_work()
     {
         $p1 = Priority::P1();
@@ -83,7 +84,7 @@ class PriorityTest extends PHPUnitTestCase
         $this->assertEquals('P5', $p5->value());
     }
 
-    /** @test */
+    #[Test]
     public function can_be_casted_to_string()
     {
         $p4 = Priority::P4();
