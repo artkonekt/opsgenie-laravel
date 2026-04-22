@@ -1,7 +1,7 @@
 # OpsGenie Notifications for Laravel
 
-## Unreleased
-##### 2026-XX-YY
+## 1.5.0
+##### 2026-04-22
 
 - Added Laravel 13 support
 - Removed Laravel 9 support
