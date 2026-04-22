@@ -19,10 +19,11 @@ use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Str;
 use Konekt\OpsGenie\Tests\Examples\OpsGenieTestNotification;
+use PHPUnit\Framework\Attributes\Test;
 
 class ChannelTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function it_sends_a_notification()
     {
         $responseBody = [
