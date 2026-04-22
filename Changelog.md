@@ -4,6 +4,8 @@
 ##### 2026-XX-YY
 
 - Added Laravel 13 support
+- Removed Laravel 9 support
+- Removed PHP 8.0 support
 
 ## 1.4.0
 ##### 2025-03-11
